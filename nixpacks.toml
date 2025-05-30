@@ -1,16 +1,10 @@
-[phases.setup]
-nixPkgs = ['nodejs', 'yarn', 'postgresql']
-
 [phases.build]
 cmds = [
-  'pip3 install -r requirements.txt',  # pip3 instead of python3 -m pip
-  'yarn cache clean',
+  'python3 --version',
+  'pip --version',   # Check if pip exists at all
   'yarn install --immutable --immutable-cache',
-  'yarn turbo run build --filter=web',
-  'cd apiserver && python3 manage.py migrate'
+  'yarn turbo run build --filter=web'
 ]
 
 [start]
 cmd = 'yarn workspace web start'
-[plugins]
-python = ">=3.11"
