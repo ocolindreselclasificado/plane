@@ -1,12 +1,13 @@
 [phases.setup]
-nixPkgs = ['nodejs', 'yarn', 'ruby']
+nixPkgs = ['nodejs', 'yarn', 'python311Full', 'postgresql']
 
 [phases.build]
 cmds = [
-  'cd apiserver && gem install bundler && bundle install',  # Rails setup
-  'yarn install --immutable --immutable-cache',              # Next.js frontend
-  'yarn turbo run build --filter=web',                       # Build Next.js web
-  'cd apiserver && bundle exec rails db:migrate'            # Run Rails migrations
+  'pip install --upgrade pip',
+  'pip install -r requirements.txt',
+  'yarn install --immutable --immutable-cache',
+  'yarn turbo run build --filter=web',
+  'python manage.py migrate'  # Django migration!
 ]
 
 [start]
