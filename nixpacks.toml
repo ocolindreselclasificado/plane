@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ['nodejs', 'yarn']
+
+[phases.build]
+cmds = [
+  'yarn install --immutable --immutable-cache',
+  'yarn turbo run build --filter=web'
+]
+
+[start]
+cmd = 'yarn workspace web start'
