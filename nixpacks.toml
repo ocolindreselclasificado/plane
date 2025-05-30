@@ -3,10 +3,10 @@ nixPkgs = ['nodejs', 'yarn', 'ruby']
 
 [phases.build]
 cmds = [
-  'cd apiserver && gem install bundler && bundle install',  # 👈 Rails setup!
-  'yarn install --immutable --immutable-cache',
-  'yarn turbo run build --filter=web',
-  'cd apiserver && bundle exec rails db:migrate'  # 👈 run migrations in correct dir
+  'cd apiserver && gem install bundler && bundle install',  # Rails setup
+  'yarn install --immutable --immutable-cache',              # Next.js frontend
+  'yarn turbo run build --filter=web',                       # Build Next.js web
+  'cd apiserver && bundle exec rails db:migrate'            # Run Rails migrations
 ]
 
 [start]
