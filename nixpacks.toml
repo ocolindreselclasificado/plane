@@ -3,11 +3,11 @@ nixPkgs = ['nodejs', 'yarn', 'python311Full', 'postgresql']
 
 [phases.build]
 cmds = [
-  'cd apiserver && python3 -m pip install -r requirements.txt',
+  'python3 -m pip install -r requirements.txt',  # Run at root, where the file is!
   'yarn cache clean',
   'yarn install --immutable --immutable-cache',
   'yarn turbo run build --filter=web',
-  'cd apiserver && python3 manage.py migrate'
+  'cd apiserver && python3 manage.py migrate'   # Migrations still in apiserver/
 ]
 
 [start]
