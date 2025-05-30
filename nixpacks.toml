@@ -1,11 +1,13 @@
 [phases.setup]
-nixPkgs = ['nodejs', 'yarn']
+nixPkgs = ['nodejs', 'yarn', 'ruby']
 
 [phases.build]
 cmds = [
+  'gem install bundler',  # 👈 install Bundler first
+  'bundle install',       # 👈 install Ruby dependencies
   'yarn install --immutable --immutable-cache',
   'yarn turbo run build --filter=web',
-  'bundle exec rails db:migrate'  # 👈 Run migration during build!
+  'bundle exec rails db:migrate'  # 👈 run Rails migrations!
 ]
 
 [start]
