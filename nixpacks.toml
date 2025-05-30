@@ -3,11 +3,11 @@ nixPkgs = ['nodejs', 'yarn', 'python311', 'postgresql']
 
 [phases.build]
 cmds = [
-  'pip install --user -r requirements.txt',  # Install Python dependencies without touching system Python
-  'yarn cache clean',                        # Clear corrupted Yarn cache
-  'yarn install --immutable --immutable-cache',  # Install frontend dependencies
-  'yarn turbo run build --filter=web',       # Build Next.js frontend
-  'python manage.py migrate'                 # Django migrations
+  'python3 -m pip install --user -r requirements.txt',  # Use python3 -m pip instead of pip directly
+  'yarn cache clean',
+  'yarn install --immutable --immutable-cache',
+  'yarn turbo run build --filter=web',
+  'python3 manage.py migrate'  # Use python3 instead of plain python
 ]
 
 [start]
