@@ -5,9 +5,10 @@ nixPkgs = ['nodejs', 'yarn', 'python311Full', 'postgresql']
 cmds = [
   'pip install --upgrade pip',
   'pip install -r requirements.txt',
+  'yarn cache clean',  # 👈 NEW: clear yarn cache to avoid ENOTEMPTY errors
   'yarn install --immutable --immutable-cache',
   'yarn turbo run build --filter=web',
-  'python manage.py migrate'  # Django migration!
+  'python manage.py migrate'
 ]
 
 [start]
