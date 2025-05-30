@@ -362,7 +362,11 @@ export const SidebarProjectsListItem: React.FC<Props> = observer((props) => {
                       </Link>
                     </CustomMenu.MenuItem>
                   )}
-                  <CustomMenu.MenuItem>
+                  <CustomMenu.MenuItem
+                    onClick={() => {
+                      setIsMenuActive(false);
+                    }}
+                  >
                     <Link href={`/${workspaceSlug}/projects/${project?.id}/settings`}>
                       <div className="flex items-center justify-start gap-2">
                         <Settings className="h-3.5 w-3.5 stroke-[1.5]" />
